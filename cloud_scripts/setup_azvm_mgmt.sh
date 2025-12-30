@@ -1,16 +1,21 @@
 # FULL Azure Free-Tier VM setup in ONE GO
 
 # 1) Install Azure CLI
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && \
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+# verify
+az version
 
-# 2) Login to Azure
-az login --use-device-code && \
+# 2) Login to Azure / Authenticate to azcli
 
-# 3) Create SSH key (if not exists)
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" && \
+az login --service-principal \
+ --username <...> \
+ --password $CLIENT_SECRET \
+ --tenant <...>
 
-# 4) Create Resource Group
-az group create --name myResourceGroup --location eastus && \
+# Create RG
+az group create \
+ --name <RG name> \
+ --location eastus
 
 # 5) Create FREE-TIER VM (B1s is required for free tier)
 az vm create \
@@ -22,5 +27,17 @@ az vm create \
   --ssh-key-values ~/.ssh/id_rsa.pub \
   --output table
 
-  # Stop the VM when not using, To avoid charges:
-az vm deallocate --resource-group myResourceGroup --name myVM
+# Web server installation
+sudo apt update -y
+sudo apt install apache2 -y
+sudo systemctl start apache2
+
+# Delete azure vm
+az vm delete \
+ --resource-group <name> \
+ --name <vm name> \
+ --yes
+
+ # Create RG
+ az group delete --name <RG name>
+

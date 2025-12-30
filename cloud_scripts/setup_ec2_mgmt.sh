@@ -22,8 +22,18 @@ aws configure
 #  CREATE EC2 INSTANCE
 aws ec2 run-instances \
   --image-id ami-0ecb62995f68bb549 \
+  --instance-type t2.micro \
+  --key-name SSHserver \
+  --associate-public-ip-address \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=awsue1devwebapp01},{Key=Env,Value=Dev}]' \
+  --region us-east-1 \
   --count 1 \
-  --instance-type t2.micro
+  
+
+# Web server installation
+sudo apt update -y
+sudo apt install apache2 -y
+sudo systemctl start apache2
 
 #for terminating ec2 instance
-aws ec2 terminate-instances --instance-ids <INSTANCE_ID>
+aws ec2 terminate-instances --instance-ids i-031a1f2aa44217c9a

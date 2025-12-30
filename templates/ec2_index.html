@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AWS EC2 Status</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+            border-top: 5px solid #FF9900; /* AWS Orange */
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        p { color: #666; margin-bottom: 25px; }
+        .status-item {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🚀 Deployment Successful</h1>
+        <p>Your web server is running perfectly.</p>
+        
+        <div class="status-item">✓ AWS EC2 Instance Active</div>
+        <div class="status-item">✓ Apache Web Server Running</div>
+        <div class="status-item">✓ Port 80 Open</div>
+
+        <p style="margin-top: 30px; font-size: 0.9em;">
+            Managed by <strong>DevOps Team</strong>
+        </p>
+    </div>
+</body>
+</html>
